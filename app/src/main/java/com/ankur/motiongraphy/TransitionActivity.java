@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.transition.Scene;
 import androidx.transition.Slide;
 import androidx.transition.Transition;
+import androidx.transition.TransitionInflater;
 import androidx.transition.TransitionManager;
 
 public class TransitionActivity extends AppCompatActivity implements View.OnClickListener {
@@ -26,15 +27,26 @@ public class TransitionActivity extends AppCompatActivity implements View.OnClic
         FrameLayout flContainer = findViewById(R.id.flContainer);
         // Step 1: Create a Scene object for both the starting and ending layout
         firstScene = Scene.getSceneForLayout(flContainer, R.layout.layout_scene_first, this);
-        // Step 2: Create a Transition object to define what type of animation you want
-
+        nextScene = Scene.getSceneForLayout(flContainer, R.layout.layout_scene_next, this);
         firstScene.enter();
         currentScene = firstScene;
+        // Step 2: Create a Transition object to define what type of animation you want
+        transition = TransitionInflater.from(this).inflateTransition(R.transition.example_2);
     }
 
     @Override
     public void onClick(View view) {
         // Step 3: Call TransitionManager.go() to run animation
+        if (currentScene == firstScene) {
+            // nextScene.enter();
+            TransitionManager.go(nextScene,transition);
+            currentScene = nextScene;
+        } else {
+            // firstScene.enter();
+            TransitionManager.go(firstScene,transition);
+            currentScene = firstScene;
+        }
+
     }
 
 }

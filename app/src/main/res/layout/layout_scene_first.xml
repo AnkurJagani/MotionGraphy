@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/txvMario"
+        android:id="@+id/tvMario"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
