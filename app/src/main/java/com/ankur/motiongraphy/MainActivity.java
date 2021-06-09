@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transition);
+        setContentView(R.layout.activity_main);
         cardView = findViewById(R.id.cardView);
         imgAnimation = findViewById(R.id.imgAnimation);
         tvTest = findViewById(R.id.tvTest);
