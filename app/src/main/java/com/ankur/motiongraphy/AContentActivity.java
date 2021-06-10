@@ -1,33 +1,28 @@
 package com.ankur.motiongraphy;
 
+import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
+import android.transition.Explode;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class AContentActivity extends AppCompatActivity implements View.OnClickListener {
-
-
-    private RecyclerView recyclerView;
+public class AContentActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content_a);
-        recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerView.setAdapter(new RecyclerView.Adapter<ViewHolder>() {
             @NonNull
@@ -46,25 +41,16 @@ public class AContentActivity extends AppCompatActivity implements View.OnClickL
                 return 100;
             }
         });
-
+        getWindow().setReenterTransition(new Slide(Gravity.TOP));
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view.getId() == R.id.btnClick) {
-
-        }
-    }
-
-
-    private static class ViewHolder extends RecyclerView.ViewHolder {
+    private class ViewHolder extends RecyclerView.ViewHolder {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    view.getContext().startActivity(new Intent(view.getContext(), BContentActivity.class));
-                }
+            itemView.setOnClickListener(view -> {
+                getWindow().setExitTransition(new Explode());
+                ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation((Activity) view.getContext());
+                view.getContext().startActivity(new Intent(view.getContext(), BContentActivity.class), activityOptions.toBundle());
             });
         }
     }

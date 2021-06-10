@@ -1,18 +1,14 @@
 package com.ankur.motiongraphy;
 
 import android.os.Bundle;
+import android.transition.ChangeBounds;
+import android.transition.Fade;
+import android.transition.Slide;
 import android.view.Gravity;
 import android.view.animation.AnimationUtils;
-import android.view.animation.Interpolator;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.transition.Slide;
-import androidx.transition.Transition;
-import androidx.transition.TransitionInflater;
-import androidx.transition.TransitionManager;
-import androidx.transition.TransitionSet;
 
-import java.util.Objects;
 
 public class BContentActivity extends AppCompatActivity {
 
@@ -20,12 +16,15 @@ public class BContentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content_b);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        Slide slideTransition = new Slide(Gravity.BOTTOM);
+        slideTransition.addTarget(R.id.tvMario);
+        slideTransition.setInterpolator(AnimationUtils.loadInterpolator(this, android.R.interpolator.linear_out_slow_in));
+        getWindow().setEnterTransition(slideTransition);
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-        super.onBackPressed();
+        finishAfterTransition();
         return true;
     }
 }

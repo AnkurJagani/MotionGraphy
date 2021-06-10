@@ -30,7 +30,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BContentActivity" />
+        <activity
+            android:name=".BContentActivity"
+            android:parentActivityName=".AContentActivity" />
     </application>
 
 </manifest>
