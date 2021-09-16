@@ -1,8 +1,6 @@
 package com.ankur.motiongraphy;
 
 import android.os.Bundle;
-import android.transition.ChangeBounds;
-import android.transition.Fade;
 import android.transition.Slide;
 import android.view.Gravity;
 import android.view.animation.AnimationUtils;
@@ -27,4 +25,5 @@ public class BContentActivity extends AppCompatActivity {
         finishAfterTransition();
         return true;
     }
+
 }

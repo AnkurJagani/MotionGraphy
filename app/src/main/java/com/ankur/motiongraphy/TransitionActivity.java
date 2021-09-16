@@ -31,7 +31,8 @@ public class TransitionActivity extends AppCompatActivity implements View.OnClic
         firstScene.enter();
         currentScene = firstScene;
         // Step 2: Create a Transition object to define what type of animation you want
-        transition = TransitionInflater.from(this).inflateTransition(R.transition.example_4);
+        transition = TransitionInflater.from(this).inflateTransition(R.transition.example_2);
+
     }
 
     @Override
